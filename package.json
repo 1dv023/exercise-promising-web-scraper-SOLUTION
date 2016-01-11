@@ -1,6 +1,8 @@
 {
   "name": "@1dv023/exercise-promising-web-scraper",
   "version": "1.0.0",
+  "description": "Scraping web sources from pages then filter and save to file in JSON format",
+  "license": "CC-BY-4.0",
   "homepage": "https://coursepress.lnu.se/kurs/serverbaserad-webbprogrammering/",
   "contributors": [
     {
@@ -8,8 +10,6 @@
       "email": "mats.loock@lnu.se"
     }
   ],
-  "license": "CC-BY-4.0",
-  "description": "Scraping web sources from pages then filter and save to file in JSON format",
   "repository": {
     "type": "git",
     "url": "https://github.com/1dv023/exercise-promising-web-scraper"
