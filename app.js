@@ -9,8 +9,8 @@
 
 const FILENAME = "./data/links.json";
 
-let fsp = require("./libs/fs-promise");
-let scrape = require("./libs/scrape");
+let fsp = require("./lib/fs-promise");
+let scrape = require("./lib/scrape");
 
 // Arguments.
 let args = process.argv.slice(2);
