@@ -22,19 +22,19 @@ if (args.length === 0) {
 
 // Chaining promises.
 Promise.all([fsp.readLinks(FILENAME), scrape.extractLinks(args)])
-    .then(function(value) {
+    .then(function(linkSets) {
         // Union the sets and convert the resulting set to array and sort it.
 
         let links = new Set();
 
-        value.forEach(function(set) {
+        linkSets.forEach(function(set) {
             links = new Set([...links, ...set]);
         });
 
         return Promise.resolve([...links].sort());
     })
-    .then(function(value) {
-        fsp.writeLinks(FILENAME, value);
+    .then(function(linkArray) {
+        fsp.writeLinks(FILENAME, linkArray);
     })
     .then(function() {
         console.log("Done!");
