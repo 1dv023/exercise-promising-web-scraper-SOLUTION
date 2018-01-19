@@ -1,27 +1,18 @@
 {
-  "name": "@1dv023/exercise-promising-web-scraper",
+  "name": "exercise-promising-web-scraper",
   "version": "1.0.0",
-  "description": "Scraping web sources from pages then filter and save to file in JSON format",
-  "license": "CC-BY-4.0",
-  "homepage": "https://coursepress.lnu.se/kurs/serverbaserad-webbprogrammering/",
-  "contributors": [
-    {
-      "name": "Mats Loock",
-      "email": "mats.loock@lnu.se"
-    }
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/1dv023/exercise-promising-web-scraper"
+  "description": "Exercise: Promising Web Scraper",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js https://nodejs.org/en/ https://developer.mozilla.org/en-US",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "engines": {
-    "node": ">=4.0.0"
-  },
+  "author": "Mats Loock",
+  "license": "MIT",
   "dependencies": {
-    "cheerio": "^0.19.0",
-    "request-promise": "^1.0.2"
-  },
-  "devDependencies": {
-    "jscs": "^2.8.0"
+    "cheerio": "^1.0.0-rc.2",
+    "fs-extra": "^5.0.0",
+    "jsdom": "^11.5.1",
+    "node-fetch": "^1.7.3"
   }
 }
