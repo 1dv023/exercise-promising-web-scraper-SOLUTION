@@ -2,7 +2,7 @@
  * The starting point of the application.
  *
  * @author Mats Loock
- * @version 1.1.0
+ * @version 1.2.0
  */
 
 'use strict'
@@ -13,7 +13,7 @@ const scrape = require('./lib/scrape')
 const FILE = './data/links.json'
 
 // Check the arguments.
-let args = process.argv.slice(2)
+const args = process.argv.slice(2)
 
 if (args.length === 0) {
   console.log('ERROR: No argument(s).')
@@ -21,16 +21,15 @@ if (args.length === 0) {
 }
 
 // Merge persistent links and scraped links and write the merged links back to the persistent storage.
-;(async () => {
+(async () => {
   try {
     // Get persistent and scarped links.
-    const persistenLinksPromise = fs.readJson(FILE)
+    const persistentLinksPromise = fs.readJson(FILE)
     const scrapedLinksPromise = scrape.extractLinks(args)
-    const [persistentLinks, scrapedLinksSet] = await Promise.all([persistenLinksPromise, scrapedLinksPromise])
+    const [persistentLinks, scrapedLinks] = await Promise.all([persistentLinksPromise, scrapedLinksPromise])
 
     // Add only unique links to the persistent links.
-    const persistentLinksSet = new Set(persistentLinks)
-    scrapedLinksSet.forEach(link => persistentLinksSet.add(link))
+    const persistentLinksSet = new Set(persistentLinks.concat(scrapedLinks))
 
     // Write the links to JSON file.
     await fs.writeJson(FILE, [...persistentLinksSet].sort(), {spaces: 4})
@@ -44,17 +43,16 @@ if (args.length === 0) {
 // // ALTERNATIVE SOLUTION - chaining promises
 
 // // Get persistent and scarped links.
-// const persistenLinksPromise = fs.readJson(FILE)
+// const persistentLinksPromise = fs.readJson(FILE)
 // const scrapedLinksPromise = scrape.extractLinks(args)
 
-// Promise.all([persistenLinksPromise, scrapedLinksPromise])
+// Promise.all([persistentLinksPromise, scrapedLinksPromise])
 //   .then(values => {
 //     // Add only unique links to the persistent links.
 //     const persistentLinks = values[0]
-//     const scrapedLinksSet = values[1]
+//     const scrapedLinks = values[1]
 
-//     const persistentLinksSet = new Set(persistentLinks)
-//     scrapedLinksSet.forEach(link => persistentLinksSet.add(link))
+//     const persistentLinksSet = new Set(persistentLinks.concat(scrapedLinks))
 
 //     // Write the links to JSON file.
 //     return fs.writeJson(FILE, [...persistentLinksSet].sort(), {spaces: 4})
