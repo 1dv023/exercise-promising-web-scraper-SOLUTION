@@ -1,19 +1,19 @@
 # Promising Web Scraper
 
-In this exercise you are going to create a web scraper, i.e. a program that to some extends acts as a web browser.
+In this exercise, you are going to create a web scraper, i.e. a program that to some extent acts as a web browser.
 
-The program will request pages from web servers, extract the links and write the web sources to a file in JSON format. The pages to request is to be passed as command line arguments. It’s only absolute web sources that are interesting, relative web sources can be ignored. The file must not contain any duplicated values and the values must be sorted in ascending order.
+The program will request pages from web servers, extract the links and write the web sources to a file in JSON format. The pages to request are to be passed as command line arguments. It’s only absolute web sources that are interesting, relative web sources can be ignored. The file must not contain any duplicated values and the values must be sorted in ascending order.
 
 To avoid “callback hell” you are obliged to use promises instead of callback functions. You may need to “promisify” one or another API function to avoid callbacks.
 
-JavaScript has a number of new features that can be useful; especially [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) is handy to collect unique values. For the JSON data to be easy to read make sure it’s “prettified” before writing it to the file.
+JavaScript has sevral features that can be useful; especially [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) is handy to collect unique values. For the JSON data to be easy to read make sure it’s “prettified” before writing it to the file.
 
 ## Example use and output
 
 Example of command line to run the application.
 
 ```shell
-$ node app.js https://nodejs.org/en/ https://developer.mozilla.org/en-US/
+$ npm start https://nodejs.org/en/ https://developer.mozilla.org/en-US/
 ```
 
 The content of the file after the command. Web sources retrieved from [https://nodejs.org/en/](https://nodejs.org/en/) and [https://developer.mozilla.org/en-US/](https://developer.mozilla.org/en-US/). [19 January 2018]
