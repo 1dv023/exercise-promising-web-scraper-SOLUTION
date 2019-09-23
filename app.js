@@ -2,21 +2,22 @@
  * The starting point of the application.
  *
  * @author Mats Loock
- * @version 1.2.0
+ * @version 1.3.0
  */
 
 'use strict'
 
-const fs = require('fs-extra')
+const { readJson, writeJson } = require('fs-extra')
+const { resolve } = require('path')
 const scrape = require('./lib/scrape')
 
-const FILE = './data/links.json'
+const fileName = resolve('data', 'links.json')
 
 // Check the arguments.
 const args = process.argv.slice(2)
 
 if (args.length === 0) {
-  console.log('ERROR: No argument(s).')
+  console.error('ERROR: No argument(s).')
   process.exit(0)
 }
 
@@ -24,7 +25,7 @@ if (args.length === 0) {
 (async () => {
   try {
     // Get persistent and scarped links.
-    const persistentLinksPromise = fs.readJson(FILE)
+    const persistentLinksPromise = readJson(fileName)
     const scrapedLinksPromise = scrape.extractLinks(args)
     const [persistentLinks, scrapedLinks] = await Promise.all([persistentLinksPromise, scrapedLinksPromise])
 
@@ -32,7 +33,7 @@ if (args.length === 0) {
     const persistentLinksSet = new Set(persistentLinks.concat(scrapedLinks))
 
     // Write the links to JSON file.
-    await fs.writeJson(FILE, [...persistentLinksSet].sort(), {spaces: 4})
+    await writeJson(fileName, [...persistentLinksSet].sort(), { spaces: 4 })
 
     console.log('Done!')
   } catch (error) {
@@ -43,7 +44,7 @@ if (args.length === 0) {
 // // ALTERNATIVE SOLUTION - chaining promises
 
 // // Get persistent and scarped links.
-// const persistentLinksPromise = fs.readJson(FILE)
+// const persistentLinksPromise = fs.readJson(fileName)
 // const scrapedLinksPromise = scrape.extractLinks(args)
 
 // Promise.all([persistentLinksPromise, scrapedLinksPromise])
@@ -55,7 +56,7 @@ if (args.length === 0) {
 //     const persistentLinksSet = new Set(persistentLinks.concat(scrapedLinks))
 
 //     // Write the links to JSON file.
-//     return fs.writeJson(FILE, [...persistentLinksSet].sort(), {spaces: 4})
+//     return fs.writeJson(fileName, [...persistentLinksSet].sort(), {spaces: 4})
 //   })
 //   .then(value => {
 //     console.log('Done!')
