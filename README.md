@@ -72,7 +72,7 @@ The content of the file after the command. Web sources retrieved from [https://n
 
 ## Hints
 
-- [4 ways for making HTTP(S) requests with Node.js](https://codeburst.io/4-ways-for-making-http-s-requests-with-node-js-c524f999942d)
+- [7 Ways to Make HTTP Requests in Node.js](https://attacomsian.com/blog/http-requests-in-nodejs)
 - [Parsing HTML: A Guide to Select the Right Library](https://tomassetti.me/parsing-html/#nodejs)
 - [Getting starting with web scraping in node.js](https://scotch.io/tutorials/scraping-the-web-with-node-js)
 - [fs-extra](https://www.npmjs.com/package/fs-extra)
